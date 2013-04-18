@@ -22,7 +22,7 @@
  *
  */
 
-var DEBUG = false;
+var DEBUG = true;
 
 /**
  * Constructor for a GoogleDocs object.
@@ -271,6 +271,9 @@ GoogleDocs.prototype.initialize = function() {
  */
 GoogleDocs.prototype.getMetadata = function() {
   console.log(Util.getTime(this)+' Getting user metadata');
+
+  if (DEBUG) { console.log('oauth_.hasToken(): '+this.oauth_.hasToken()) };
+
   if (this.oauth_.hasToken()) {
       this.oauth_.sendSignedRequest(GoogleDocs.METADATA_URL,
 				    Util.bind(this.receivedMetadata, this),
